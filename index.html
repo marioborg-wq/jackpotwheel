@@ -93,9 +93,9 @@
       <div style="width: 96px; height: 96px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.15); border-top-color: #FAD749; animation: jw-spin 900ms linear infinite;"></div>
       <span ref="{{ preloaderTextRef }}" style="font-family: Inter, sans-serif; font-weight: 600; font-size: 13px; color: #EEEEEE;">Loading… 0%</span>
     </div>
-    <audio ref="{{ musicRef }}" src="audio/short_dramatic.mp3" loop preload="auto" playsinline style="display: none;"></audio>
+    <audio ref="{{ musicRef }}" src="audio/suspense.wav" loop preload="auto" playsinline style="display: none;"></audio>
     <audio ref="{{ countdownAudioRef }}" src="audio/countdown-sine-wave-beeps.mp3" preload="auto" playsinline style="display: none;"></audio>
-    <audio ref="{{ winLoopRef }}" src="audio/win-loop.mp3" loop preload="auto" playsinline style="display: none;"></audio>
+    <audio ref="{{ winLoopRef }}" src="audio/long-dramatic.mp3" loop preload="auto" playsinline style="display: none;"></audio>
     <audio ref="{{ coinsSoundRef }}" src="audio/coins-drop.wav" loop preload="auto" playsinline style="display: none;"></audio>
     <audio ref="{{ reelSpinRef }}" src="audio/reel-spin.wav" loop preload="auto" playsinline style="display: none;"></audio>
 
@@ -393,7 +393,8 @@ class Component extends DCLogic {
     this.assetsReady = false;
     this.preloadAssets(() => {
       this.assetsReady = true;
-      this.unlockAudio = () => { this.unlockAllAudio(); };
+      this.ensureMusic();
+      this.unlockAudio = () => { this.unlockAllAudio(); this.ensureMusic(); };
       window.addEventListener("pointerdown", this.unlockAudio, { once: true });
       if (this.props.autoSpin === true) {
         this.autoTimer = setTimeout(() => this.spin(), 1100);
@@ -409,7 +410,7 @@ class Component extends DCLogic {
       "assets/coin0.png", "assets/coin1.png", "assets/coin2.png", "assets/coin3.png",
       "assets/coin5.png", "assets/coin6.png", "assets/coin7.png", "assets/coin8.png", "assets/coin9.png", "assets/coin10.png"
     ];
-    const audios = ["audio/short_dramatic.mp3", "audio/countdown-sine-wave-beeps.mp3", "audio/win-loop.mp3", "audio/coins-drop.wav", "audio/reel-spin.wav"];
+    const audios = ["audio/suspense.wav", "audio/countdown-sine-wave-beeps.mp3", "audio/long-dramatic.mp3", "audio/coins-drop.wav", "audio/reel-spin.wav"];
     const total = images.length + audios.length;
     let loaded = 0;
     const bump = () => {
@@ -481,7 +482,6 @@ class Component extends DCLogic {
 
   applyIdle() {
     this.stopReelSpinSound();
-    this.stopMusic();
     clearInterval(this.countdownTimer);
     clearTimeout(this.winLoopTimer);
     this.stopCountdownSound();
@@ -821,10 +821,8 @@ class Component extends DCLogic {
   }
 
   playWinLoop() {
-    this.ensureMusic();
+    this.stopMusic();
     const el = this.winLoopRef.current;
-    const music = this.musicRef.current;
-    if (music) music.volume = 0.12;
     if (!el || this.musicMuted) return;
     el.volume = 0.7;
     el.currentTime = 0;
@@ -837,8 +835,7 @@ class Component extends DCLogic {
       el.pause();
       el.currentTime = 0;
     }
-    const music = this.musicRef.current;
-    if (music && !this.musicMuted) music.volume = 0.55;
+    this.ensureMusic();
   }
 
   toggleMusic() {
@@ -863,6 +860,7 @@ class Component extends DCLogic {
   spin() {
     if (!this.assetsReady || this.phase === "spinning" || this.phase === "countdown") return;
     if (this.phase !== "idle") this.applyIdle();
+    this.ensureMusic();
     clearTimeout(this.autoTimer);
     this.phase = "countdown";
     let n = 3;
@@ -910,6 +908,8 @@ class Component extends DCLogic {
 
     const style = this.props.stopStyle || "Near-miss";
     const total = Math.max(3200, Number(this.props.spinDuration) || 5400);
+    clearTimeout(this.winLoopTimer);
+    this.winLoopTimer = setTimeout(() => this.playWinLoop(), Math.max(0, total - 1000));
     const wMax = 1280;
     const tUp = 520;
     const tSettle = 620;
@@ -1023,8 +1023,6 @@ class Component extends DCLogic {
     this.playWinBurst(t);
     this.showWinMessage(t);
     this.spawnCoinRain(t.fire);
-    clearTimeout(this.winLoopTimer);
-    this.winLoopTimer = setTimeout(() => this.playWinLoop(), 1010);
 
     TIERS.forEach(x => {
       const el = this.labelRef(x.key).current;
