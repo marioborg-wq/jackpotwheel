@@ -88,11 +88,11 @@
 <div class="jw-shell" style="min-height: 100vh; display: flex; flex-direction: row; align-items: flex-start; justify-content: center; gap: 40px; padding: 40px 24px; background: #0a0a0a; font-family: Inter, sans-serif; box-sizing: border-box;">
 
   <div data-screen-label="Jackpot Wheel" class="jw-phone" style="position: relative; width: 393px; height: 861px; flex-shrink: 0; overflow: hidden; background: #000000; border-radius: 28px; box-shadow: 0 24px 80px rgba(0,0,0,0.8);">
-    <audio ref="{{ musicRef }}" src="uploads/short_dramatic.mp3" loop preload="auto" playsinline style="display: none;"></audio>
-    <audio ref="{{ countdownAudioRef }}" src="uploads/Countdown Sine Wave Beeps.mp3" preload="auto" playsinline style="display: none;"></audio>
-    <audio ref="{{ winLoopRef }}" src="assets/win-loop.mp3" loop preload="auto" playsinline style="display: none;"></audio>
-    <audio ref="{{ coinsSoundRef }}" src="assets/coins-drop.wav" loop preload="auto" playsinline style="display: none;"></audio>
-    <audio ref="{{ reelSpinRef }}" src="assets/reel-spin.wav" loop preload="auto" playsinline style="display: none;"></audio>
+    <audio ref="{{ musicRef }}" src="audio/short_dramatic.mp3" loop preload="auto" playsinline style="display: none;"></audio>
+    <audio ref="{{ countdownAudioRef }}" src="audio/countdown-sine-wave-beeps.mp3" preload="auto" playsinline style="display: none;"></audio>
+    <audio ref="{{ winLoopRef }}" src="audio/win-loop.mp3" loop preload="auto" playsinline style="display: none;"></audio>
+    <audio ref="{{ coinsSoundRef }}" src="audio/coins-drop.wav" loop preload="auto" playsinline style="display: none;"></audio>
+    <audio ref="{{ reelSpinRef }}" src="audio/reel-spin.wav" loop preload="auto" playsinline style="display: none;"></audio>
 
     <div onClick="{{ onToggleMusic }}" style="position: absolute; right: 16px; bottom: 32px; width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 9;" style-hover="background: rgba(0,0,0,0.75);">
       <svg ref="{{ speakerOnRef }}" width="20" height="20" viewBox="0 0 24 24" style="color: #FFFFFF;"><path d="M4 9v6h4l5 5V4L8 9H4Z" fill="currentColor"></path><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"></path><path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"></path></svg>
@@ -103,7 +103,7 @@
       <svg width="20" height="20" viewBox="0 0 24 24" style="color: #FFFFFF;"><path d="M4 12a8 8 0 0 1 13.66-5.66M20 12a8 8 0 0 1-13.66 5.66" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"></path><path d="M17 3v4h-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M7 21v-4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg>
     </div>
 
-    <img src="assets/game-bg-keyvisual.jpg" alt="" style="position: absolute; left: 0; top: 0; width: 393px; height: 861px; object-fit: cover; object-position: 50% 30%; opacity: 1;" />
+    <img src="skin/game-bg-keyvisual.jpg" alt="" style="position: absolute; left: 0; top: 0; width: 393px; height: 861px; object-fit: cover; object-position: 50% 30%; opacity: 1;" />
     <div style="position: absolute; left: 0; top: 0; width: 393px; height: 861px; background: radial-gradient(58% 40% at 50% 66%, rgba(255,90,0,0.16) 0%, rgba(0,0,0,0) 70%), linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 34%, rgba(0,0,0,0.5) 100%);"></div>
 
     <div class="jw-status-bar" style="position: absolute; left: 0; top: 0; width: 393px; height: 50px; z-index: 6;">
@@ -120,7 +120,7 @@
     <div ref="{{ topContentRef }}" style="transition: opacity 260ms cubic-bezier(0.2,0,0,1);">
     <div style="position: absolute; left: 0; top: 0; width: 393px; height: 205px; z-index: 5; pointer-events: none;">
       <div style="position: absolute; left: 50%; top: 145px; width: 230px; height: 90px; transform: translate(-50%, -50%); background: radial-gradient(50% 50% at 50% 62%, rgba(255,150,20,0.55) 0%, rgba(255,90,0,0.28) 45%, rgba(255,60,0,0) 75%); filter: blur(6px); animation: jw-flicker 1400ms ease-in-out infinite; z-index: 1;"></div>
-      <img src="assets/image-88.png" alt="KTO Jackpot de Fogo" style="position: absolute; left: 53px; top: 77px; width: 287px; height: 128px; object-fit: contain; z-index: 2; animation: jw-idle-bob 2600ms ease-in-out infinite;" />
+      <img src="skin/image-88.png" alt="KTO Jackpot de Fogo" style="position: absolute; left: 53px; top: 77px; width: 287px; height: 128px; object-fit: contain; z-index: 2; animation: jw-idle-bob 2600ms ease-in-out infinite;" />
       <div style="position: absolute; left: 50%; top: 178px; width: 190px; height: 1px; transform: translateX(-50%); z-index: 3;">
         <span style="position: absolute; left: 4%;  bottom: 0; width: 4px; height: 4px; border-radius: 50%; background: #FFD24A; box-shadow: 0 0 8px #FF7A00; --dx: -14px; animation: jw-ember 2000ms linear infinite; animation-delay: 0ms;"></span>
         <span style="position: absolute; left: 16%; bottom: 0; width: 3px; height: 3px; border-radius: 50%; background: #FFAE2A; box-shadow: 0 0 8px #FF5A00; --dx: 10px;  animation: jw-ember 1650ms linear infinite; animation-delay: 220ms;"></span>
@@ -172,7 +172,7 @@
     <div ref="{{ coinRainRef }}" style="position: absolute; left: 0; top: 0; width: 393px; height: 861px; overflow: hidden; pointer-events: none; z-index: 15;"></div>
 
     <div ref="{{ winMessageRef }}" style="position: absolute; left: 0; top: 70px; width: 393px; z-index: 6; display: flex; flex-direction: column; align-items: center; opacity: 0; pointer-events: none; transition: opacity 320ms cubic-bezier(0.2,0,0,1);">
-      <img ref="{{ winLogoRef }}" src="assets/image-88.png" alt="KTO Jackpot de Fogo" style="width: 160px; height: 71px; object-fit: contain; margin-bottom: 34px; transform: scale(1.8); opacity: 0; transition: transform 620ms cubic-bezier(0.2,0,0,1), opacity 400ms ease-out;" />
+      <img ref="{{ winLogoRef }}" src="skin/image-88.png" alt="KTO Jackpot de Fogo" style="width: 160px; height: 71px; object-fit: contain; margin-bottom: 34px; transform: scale(1.8); opacity: 0; transition: transform 620ms cubic-bezier(0.2,0,0,1), opacity 400ms ease-out;" />
       <span style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; width: 280px; min-height: 78px; padding: 0 8px; text-align: center; box-sizing: border-box;">
         <span style="font-family: Inter, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: 0.3px; text-transform: capitalize; color: #FFFFFF;">You Just Won The</span>
         <span style="display: inline-block; animation: jw-title-levitate 2600ms ease-in-out infinite;">
@@ -212,7 +212,7 @@
       </div>
 
       <div ref="{{ ringRef }}" style="position: absolute; left: 0; top: 0; width: 360px; height: 360px; will-change: transform;">
-        <img src="assets/wheel-labels.png" alt="" style="position: absolute; left: 0; top: 0; width: 360px; height: 360px; object-fit: contain; filter: brightness(0.72) saturate(0.92) drop-shadow(0 12px 26px rgba(0,0,0,0.8));" />
+        <img src="skin/wheel-labels.png" alt="" style="position: absolute; left: 0; top: 0; width: 360px; height: 360px; object-fit: contain; filter: brightness(0.72) saturate(0.92) drop-shadow(0 12px 26px rgba(0,0,0,0.8));" />
         <div style="position: absolute; left: 50%; top: 50%; width: 232px; height: 232px; border-radius: 50%; transform: translate(-50%, -50%); box-shadow: inset 0 0 40px rgba(255,120,0,0.08);"></div>
 
         <div ref="{{ labelFogoRef }}" style="position: absolute; left: 50%; top: 50%; width: 108px; transform-origin: 0 0; transform: rotate(0deg) translateY(-116px) rotate(-90deg) translate(-50%, -50%); font-family: 'NN Swinton STD', Anton, sans-serif; font-style: italic; font-weight: 900; font-size: 16px; line-height: 0.88; letter-spacing: 0.2px; text-transform: uppercase; text-align: center; color: #FFE500; text-shadow: 0 0 12px rgba(255,160,0,0.75), 0 2px 4px rgba(0,0,0,0.9);">Jackpot<br />do Fogo</div>
@@ -227,7 +227,7 @@
       <div ref="{{ fireRef }}" style="position: absolute; left: 50%; top: 46%; width: 170px; height: 170px; transform: translate(-50%, -50%); background: radial-gradient(50% 50% at 50% 62%, rgba(255,214,90,0.9) 0%, rgba(255,120,0,0.55) 34%, rgba(218,0,0,0.22) 60%, rgba(0,0,0,0) 78%); mix-blend-mode: screen; filter: blur(6px); opacity: 0; animation: jw-flicker 900ms ease-in-out infinite; pointer-events: none;"></div>
 
       <div ref="{{ chestRef }}" style="position: absolute; left: 133px; top: 122px; width: 94px; height: 113px; display: flex; align-items: flex-end; justify-content: center; transform-origin: 50% 88%; will-change: transform;">
-        <img ref="{{ chestImgRef }}" src="assets/icon_default.png" alt="" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(0,0,0,0.7));" />
+        <img ref="{{ chestImgRef }}" src="skin/icon_default.png" alt="" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(0,0,0,0.7));" />
       </div>
 
       <div ref="{{ countdownRef }}" style="position: absolute; left: 50%; top: 50%; width: 120px; height: 120px; transform: translate(-50%, -50%); border-radius: 50%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; z-index: 5;">
@@ -249,7 +249,7 @@
     </div>
 
     <div ref="{{ pointerWrapRef }}" style="position: absolute; left: 106px; top: 732px; width: 182px; height: 76px; transform: rotate(90deg); transform-origin: 50% 50%; z-index: 4; filter: drop-shadow(0 0 10px rgba(0,0,0,0.8));">
-      <div style="width: 182px; height: 76px; background-image: url('assets/pointer.png'); background-size: 239.863% 100.159%; background-position: 0% 50%; background-repeat: no-repeat;"></div>
+      <div style="width: 182px; height: 76px; background-image: url('skin/pointer.png'); background-size: 239.863% 100.159%; background-position: 0% 50%; background-repeat: no-repeat;"></div>
     </div>
 
 
@@ -291,12 +291,12 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:705,&quot;height&quot;:941},&quot;winningTier&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Mini Jackpot&quot;,&quot;Minor Jackpot&quot;,&quot;Major Jackpot&quot;,&quot;Jackpot do Fogo&quot;],&quot;default&quot;:&quot;Jackpot do Fogo&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Outcome&quot;},&quot;stopStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Clean&quot;,&quot;Near-miss&quot;,&quot;Slow-motion tick&quot;],&quot;default&quot;:&quot;Near-miss&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;spinDuration&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:3200,&quot;max&quot;:9000,&quot;step&quot;:200,&quot;default&quot;:5400,&quot;unit&quot;:&quot;ms&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;autoSpin&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Outcome&quot;}}">
 const TIERS = [
-  { key: "fogo",  name: "Jackpot do Fogo", amount: "R$ 1.851.956", angle: 0,   chest: "assets/icon_super.png", scale: 1.24, fire: 1.0,  fireSize: 300, halo: 1.0 },
-  { key: "major", name: "Major Jackpot",   amount: "R$ 851.956",   angle: 90,  chest: "assets/icon_major.png", scale: 1.06, fire: 0.7,  fireSize: 232, halo: 0.6 },
-  { key: "minor", name: "Minor Jackpot",   amount: "R$ 51.956",    angle: 180, chest: "assets/icon_minor.png", scale: 0.95, fire: 0.48, fireSize: 190, halo: 0.4 },
-  { key: "mini",  name: "Mini Jackpot",    amount: "R$ 1.956",     angle: 270, chest: "assets/icon_mini.png", scale: 0.84, fire: 0.26, fireSize: 150, halo: 0.2 }
+  { key: "fogo",  name: "Jackpot do Fogo", amount: "R$ 1.851.956", angle: 0,   chest: "skin/icon_super.png", scale: 1.24, fire: 1.0,  fireSize: 300, halo: 1.0 },
+  { key: "major", name: "Major Jackpot",   amount: "R$ 851.956",   angle: 90,  chest: "skin/icon_major.png", scale: 1.06, fire: 0.7,  fireSize: 232, halo: 0.6 },
+  { key: "minor", name: "Minor Jackpot",   amount: "R$ 51.956",    angle: 180, chest: "skin/icon_minor.png", scale: 0.95, fire: 0.48, fireSize: 190, halo: 0.4 },
+  { key: "mini",  name: "Mini Jackpot",    amount: "R$ 1.956",     angle: 270, chest: "skin/icon_mini.png", scale: 0.84, fire: 0.26, fireSize: 150, halo: 0.2 }
 ];
-const CLOSED = "assets/icon_default.png";
+const CLOSED = "skin/icon_default.png";
 const IDLE_ROT = 45;
 const TIER_COLOR = { fogo: "#FFE500", major: "#FFFFFF", minor: "#FFFFFF", mini: "#FFFFFF" };
 
