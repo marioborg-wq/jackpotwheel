@@ -383,7 +383,7 @@ class Component extends DCLogic {
         phone.style.background = "#000000";
         return;
       }
-      const scale = Math.min(vw / 393, vh / 861);
+      const scale = Math.max(vw / 393, vh / 861);
       phone.style.transformOrigin = "top left";
       phone.style.position = "absolute";
       phone.style.transform = "scale(" + scale + ")";
