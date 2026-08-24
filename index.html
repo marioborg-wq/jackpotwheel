@@ -375,6 +375,8 @@ class Component extends DCLogic {
         phone.style.top = "0";
         shell.style.height = "";
         shell.style.overflow = "";
+        shell.style.backgroundImage = "";
+        phone.style.background = "#000000";
         return;
       }
       const scale = Math.min(vw / 393, vh / 861);
@@ -385,6 +387,10 @@ class Component extends DCLogic {
       phone.style.top = Math.round((vh - 861 * scale) / 2) + "px";
       shell.style.height = vh + "px";
       shell.style.overflow = "hidden";
+      shell.style.backgroundImage = "url('skin/game-bg-keyvisual.jpg')";
+      shell.style.backgroundSize = "cover";
+      shell.style.backgroundPosition = "50% 30%";
+      phone.style.background = "transparent";
     };
     this.fitToViewport();
     window.addEventListener("resize", this.fitToViewport);
