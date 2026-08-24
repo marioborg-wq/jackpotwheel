@@ -21,6 +21,9 @@
   body { margin: 0; background: #0a0a0a; }
   a { color: #00DD70; text-decoration: none; }
   a:hover { color: #00C264; text-decoration: underline; }
+  @media (max-width: 767px) {
+    .jw-side-panel { display: none !important; }
+  }
   @keyframes jw-flicker {
     0%   { transform: translate(-50%, -50%) scale(1, 1);       opacity: 0.82; }
     22%  { transform: translate(-50%, -51%) scale(1.06, 1.1);  opacity: 1; }
@@ -91,6 +94,10 @@
     <div onClick="{{ onToggleMusic }}" style="position: absolute; right: 16px; bottom: 32px; width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 9;" style-hover="background: rgba(0,0,0,0.75);">
       <svg ref="{{ speakerOnRef }}" width="20" height="20" viewBox="0 0 24 24" style="color: #FFFFFF;"><path d="M4 9v6h4l5 5V4L8 9H4Z" fill="currentColor"></path><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"></path><path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"></path></svg>
       <svg ref="{{ speakerOffRef }}" width="20" height="20" viewBox="0 0 24 24" style="color: #FFFFFF; display: none;"><path d="M4 9v6h4l5 5V4L8 9H4Z" fill="currentColor"></path><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </div>
+
+    <div onClick="{{ onRandomSpin }}" style="position: absolute; left: 16px; bottom: 32px; width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 9;" style-hover="background: rgba(0,0,0,0.75);" style-active="transform: scale(0.92);">
+      <svg width="20" height="20" viewBox="0 0 24 24" style="color: #FFFFFF;"><path d="M4 12a8 8 0 0 1 13.66-5.66M20 12a8 8 0 0 1-13.66 5.66" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"></path><path d="M17 3v4h-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M7 21v-4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg>
     </div>
 
     <img src="assets/game-bg-keyvisual.jpg" alt="" style="position: absolute; left: 0; top: 0; width: 393px; height: 861px; object-fit: cover; object-position: 50% 30%; opacity: 1;" />
@@ -248,7 +255,7 @@
     </div>
   </div>
 
-  <div style="width: 232px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; padding: 20px; box-sizing: border-box; background: #1E1E1E; border: 1px solid #323232; border-radius: 12px;">
+  <div class="jw-side-panel" style="width: 232px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; padding: 20px; box-sizing: border-box; background: #1E1E1E; border: 1px solid #323232; border-radius: 12px;">
     <span style="font-family: Inter, sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; color: #828282;">Demo controls</span>
     <div style="display: flex; flex-direction: column; gap: 8px;">
       <span style="font-family: Inter, sans-serif; font-weight: 600; font-size: 12px; color: #EEEEEE;">Land on</span>
@@ -274,7 +281,7 @@
     <div onClick="{{ onReplay }}" style="height: 40px; border-radius: 8px; background: #FAD749; display: flex; align-items: center; justify-content: center; cursor: pointer;" style-hover="background: #E8C63C;" style-active="transform: scale(0.97);">
       <span style="font-family: Inter, sans-serif; font-weight: 700; font-size: 13px; color: #000000; white-space: nowrap;">Spin the wheel</span>
     </div>
-    <span style="font-family: Inter, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5A5A5A;">Picking a tier spins straight away. The chest stays closed while the wheel is fast, then cycles per sector as it slows, and bursts open on the winning tier.</span>
+    <span style="font-family: Inter, sans-serif; font-weight: 400; font-size: 11px; line-height: 1.5; color: #5A5A5A;">Pick a tier, then press Spin the wheel to play it out. The chest stays closed while the wheel is fast, then cycles per sector as it slows, and bursts open on the winning tier.</span>
   </div>
 </div>
 
@@ -326,6 +333,12 @@ class Component extends DCLogic {
   musicToggleLabelRef = React.createRef();
   countdownRef = React.createRef();
   countdownNumRef = React.createRef();
+  randomSpin = () => {
+    if (this.phase === "spinning" || this.phase === "countdown") return;
+    this.target = Math.floor(Math.random() * 4);
+    this.paintDev();
+    this.spin();
+  };
   speakerOnRef = React.createRef();
   speakerOffRef = React.createRef();
   countdownAudioRef = React.createRef();
@@ -920,7 +933,11 @@ class Component extends DCLogic {
   pick(i) {
     this.target = i;
     this.paintDev();
-    this.replay();
+    cancelAnimationFrame(this.raf);
+    clearTimeout(this.autoTimer);
+    clearTimeout(this.burstTimer);
+    this.phase = "idle";
+    this.applyIdle();
   }
 
   replay() {
@@ -965,6 +982,7 @@ class Component extends DCLogic {
       devMajorRef: this.devMajorRef,
       devFogoRef: this.devFogoRef,
       onSpin: () => this.spin(),
+      onRandomSpin: this.randomSpin,
       onReplay: () => this.replay(),
       onPickMini: () => this.pick(3),
       onPickMinor: () => this.pick(2),
