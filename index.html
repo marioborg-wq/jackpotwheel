@@ -32,6 +32,7 @@
     .jw-preloader { background: transparent !important; }
     .jw-logo-img { width: 220px !important; height: 98px !important; left: 86.5px !important; top: 107px !important; }
     .jw-win-logo { display: none !important; }
+    .jw-win-message { top: 130px !important; }
   }
   @keyframes jw-flicker {
     0%   { transform: translate(-50%, -50%) scale(1, 1);       opacity: 0.82; }
@@ -181,7 +182,7 @@
 
     <div ref="{{ coinRainRef }}" style="position: absolute; left: 0; top: 0; width: 393px; height: 861px; overflow: hidden; pointer-events: none; z-index: 15;"></div>
 
-    <div ref="{{ winMessageRef }}" style="position: absolute; left: 0; top: 70px; width: 393px; z-index: 6; display: flex; flex-direction: column; align-items: center; opacity: 0; pointer-events: none; transition: opacity 320ms cubic-bezier(0.2,0,0,1);">
+    <div class="jw-win-message" ref="{{ winMessageRef }}" style="position: absolute; left: 0; top: 70px; width: 393px; z-index: 6; display: flex; flex-direction: column; align-items: center; opacity: 0; pointer-events: none; transition: opacity 320ms cubic-bezier(0.2,0,0,1);">
       <img class="jw-win-logo" ref="{{ winLogoRef }}" src="skin/image-88.png" alt="KTO Jackpot de Fogo" style="width: 160px; height: 71px; object-fit: contain; margin-bottom: 34px; transform: scale(1.8); opacity: 0; transition: transform 620ms cubic-bezier(0.2,0,0,1), opacity 400ms ease-out;" />
       <span style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; width: 280px; min-height: 78px; padding: 0 8px; text-align: center; box-sizing: border-box;">
         <span style="font-family: Inter, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: 0.3px; text-transform: capitalize; color: #FFFFFF;">You Just Won The</span>
