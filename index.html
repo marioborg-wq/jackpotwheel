@@ -23,6 +23,9 @@
   a:hover { color: #00C264; text-decoration: underline; }
   @media (max-width: 767px) {
     .jw-side-panel { display: none !important; }
+    .jw-status-bar { display: none !important; }
+    .jw-shell { padding: 0 !important; align-items: flex-start !important; }
+    .jw-phone { border-radius: 0 !important; box-shadow: none !important; width: 100% !important; }
   }
   @keyframes jw-flicker {
     0%   { transform: translate(-50%, -50%) scale(1, 1);       opacity: 0.82; }
@@ -82,9 +85,9 @@
 </style>
 </helmet>
 
-<div style="min-height: 100vh; display: flex; flex-direction: row; align-items: flex-start; justify-content: center; gap: 40px; padding: 40px 24px; background: #0a0a0a; font-family: Inter, sans-serif; box-sizing: border-box;">
+<div class="jw-shell" style="min-height: 100vh; display: flex; flex-direction: row; align-items: flex-start; justify-content: center; gap: 40px; padding: 40px 24px; background: #0a0a0a; font-family: Inter, sans-serif; box-sizing: border-box;">
 
-  <div data-screen-label="Jackpot Wheel" style="position: relative; width: 393px; height: 861px; flex-shrink: 0; overflow: hidden; background: #000000; border-radius: 28px; box-shadow: 0 24px 80px rgba(0,0,0,0.8);">
+  <div data-screen-label="Jackpot Wheel" class="jw-phone" style="position: relative; width: 393px; height: 861px; flex-shrink: 0; overflow: hidden; background: #000000; border-radius: 28px; box-shadow: 0 24px 80px rgba(0,0,0,0.8);">
     <audio ref="{{ musicRef }}" src="uploads/short_dramatic.mp3" loop preload="auto" playsinline style="display: none;"></audio>
     <audio ref="{{ countdownAudioRef }}" src="uploads/Countdown Sine Wave Beeps.mp3" preload="auto" playsinline style="display: none;"></audio>
     <audio ref="{{ winLoopRef }}" src="assets/win-loop.mp3" loop preload="auto" playsinline style="display: none;"></audio>
@@ -103,7 +106,7 @@
     <img src="assets/game-bg-keyvisual.jpg" alt="" style="position: absolute; left: 0; top: 0; width: 393px; height: 861px; object-fit: cover; object-position: 50% 30%; opacity: 1;" />
     <div style="position: absolute; left: 0; top: 0; width: 393px; height: 861px; background: radial-gradient(58% 40% at 50% 66%, rgba(255,90,0,0.16) 0%, rgba(0,0,0,0) 70%), linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 34%, rgba(0,0,0,0.5) 100%);"></div>
 
-    <div style="position: absolute; left: 0; top: 0; width: 393px; height: 50px; z-index: 6;">
+    <div class="jw-status-bar" style="position: absolute; left: 0; top: 0; width: 393px; height: 50px; z-index: 6;">
       <span style="position: absolute; left: 29px; top: 19px; width: 30px; height: 18px; font-family: 'SF Pro Display', Inter, -apple-system, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.28px; text-align: center; color: #FFFFFF;">9:41</span>
       <div style="position: absolute; left: 312.7px; top: 22px; width: 17px; height: 10.7px; color: #FFFFFF;"><svg width="17" height="10.667" viewBox="0 0 17 10.667"><path d="M 2 6.667 C 2.552 6.667 3 7.115 3 7.667 L 3 9.667 C 3 10.219 2.552 10.667 2 10.667 L 1 10.667 C 0.448 10.667 0 10.219 0 9.667 L 0 7.667 C 0 7.115 0.448 6.667 1 6.667 L 2 6.667 Z M 6.667 4.667 C 7.219 4.667 7.667 5.115 7.667 5.667 L 7.667 9.667 C 7.667 10.219 7.219 10.667 6.667 10.667 L 5.667 10.667 C 5.115 10.667 4.667 10.219 4.667 9.667 L 4.667 5.667 C 4.667 5.115 5.115 4.667 5.667 4.667 L 6.667 4.667 Z M 11.333 2.333 C 11.885 2.333 12.333 2.781 12.333 3.333 L 12.333 9.667 C 12.333 10.219 11.885 10.667 11.333 10.667 L 10.333 10.667 C 9.781 10.667 9.333 10.219 9.333 9.667 L 9.333 3.333 C 9.333 2.781 9.781 2.333 10.333 2.333 L 11.333 2.333 Z M 16 0 C 16.552 0 17 0.448 17 1 L 17 9.667 C 17 10.219 16.552 10.667 16 10.667 L 15 10.667 C 14.448 10.667 14 10.219 14 9.667 L 14 1 C 14 0.448 14.448 0 15 0 L 16 0 Z" fill="currentColor" fill-rule="nonzero"></path></svg></div>
       <div style="position: absolute; left: 335.7px; top: 21.7px; width: 15.3px; height: 11px; color: #FFFFFF;"><svg width="15.272" height="10.966" viewBox="0 0 15.272 10.966"><path d="M 5.427 8.401 C 6.702 7.322 8.571 7.322 9.847 8.401 C 9.911 8.459 9.947 8.541 9.949 8.627 C 9.951 8.714 9.917 8.797 9.855 8.858 L 7.858 10.873 C 7.8 10.932 7.72 10.966 7.637 10.966 C 7.553 10.966 7.474 10.932 7.415 10.873 L 5.417 8.858 C 5.355 8.797 5.321 8.714 5.323 8.627 C 5.325 8.541 5.363 8.459 5.427 8.401 Z M 2.762 5.711 C 5.51 3.155 9.766 3.155 12.514 5.711 C 12.576 5.771 12.611 5.854 12.612 5.94 C 12.613 6.026 12.579 6.109 12.519 6.17 L 11.364 7.337 C 11.245 7.456 11.053 7.459 10.931 7.343 C 10.028 6.526 8.854 6.073 7.637 6.073 C 6.42 6.074 5.247 6.526 4.345 7.343 C 4.223 7.459 4.03 7.456 3.911 7.337 L 2.757 6.17 C 2.696 6.109 2.662 6.026 2.663 5.94 C 2.664 5.854 2.7 5.771 2.762 5.711 Z M 0.097 3.029 C 4.312 -1.01 10.962 -1.01 15.177 3.029 C 15.238 3.089 15.272 3.172 15.272 3.257 C 15.273 3.343 15.239 3.425 15.179 3.486 L 14.022 4.653 C 13.903 4.772 13.711 4.773 13.59 4.655 C 11.984 3.129 9.853 2.278 7.637 2.278 C 5.421 2.278 3.289 3.129 1.683 4.655 C 1.562 4.773 1.369 4.772 1.25 4.653 L 0.094 3.486 C 0.033 3.425 -0.001 3.343 0 3.257 C 0.001 3.172 0.036 3.089 0.097 3.029 Z" fill="currentColor" fill-rule="nonzero"></path></svg></div>
