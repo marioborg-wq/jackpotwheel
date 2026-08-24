@@ -28,6 +28,7 @@
     .jw-shell { padding: 0 !important; align-items: flex-start !important; }
     .jw-phone { border-radius: 0 !important; box-shadow: none !important; width: 100% !important; }
     .jw-bg-img { display: none !important; }
+    .jw-gradient-overlay { display: none !important; }
   }
   @keyframes jw-flicker {
     0%   { transform: translate(-50%, -50%) scale(1, 1);       opacity: 0.82; }
@@ -110,7 +111,7 @@
     </div>
 
     <img class="jw-bg-img" src="skin/game-bg-keyvisual.jpg" alt="" style="position: absolute; left: 0; top: 0; width: 393px; height: 861px; object-fit: cover; object-position: 50% 30%; opacity: 1;" />
-    <div style="position: absolute; left: 0; top: 0; width: 393px; height: 861px; background: radial-gradient(58% 40% at 50% 66%, rgba(255,90,0,0.16) 0%, rgba(0,0,0,0) 70%), linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 34%, rgba(0,0,0,0.5) 100%);"></div>
+    <div class="jw-gradient-overlay" style="position: absolute; left: 0; top: 0; width: 393px; height: 861px; background: radial-gradient(58% 40% at 50% 66%, rgba(255,90,0,0.16) 0%, rgba(0,0,0,0) 70%), linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 34%, rgba(0,0,0,0.5) 100%);"></div>
 
     <div class="jw-status-bar" style="position: absolute; left: 0; top: 0; width: 393px; height: 50px; z-index: 6;">
       <span style="position: absolute; left: 29px; top: 19px; width: 30px; height: 18px; font-family: 'SF Pro Display', Inter, -apple-system, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.28px; text-align: center; color: #FFFFFF;">9:41</span>
@@ -377,6 +378,7 @@ class Component extends DCLogic {
         shell.style.height = "";
         shell.style.overflow = "";
         shell.style.backgroundImage = "";
+        shell.style.backgroundBlendMode = "";
         phone.style.background = "#000000";
         return;
       }
@@ -388,9 +390,10 @@ class Component extends DCLogic {
       phone.style.top = Math.round((vh - 861 * scale) / 2) + "px";
       shell.style.height = vh + "px";
       shell.style.overflow = "hidden";
-      shell.style.backgroundImage = "url('skin/game-bg-keyvisual.jpg')";
-      shell.style.backgroundSize = "cover";
-      shell.style.backgroundPosition = "50% 30%";
+      shell.style.backgroundImage = "radial-gradient(58% 40% at 50% 66%, rgba(255,90,0,0.16) 0%, rgba(0,0,0,0) 70%), linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 34%, rgba(0,0,0,0.5) 100%), url('skin/game-bg-keyvisual.jpg')";
+      shell.style.backgroundSize = "cover, cover, cover";
+      shell.style.backgroundPosition = "50% 66%, 50% 50%, 50% 30%";
+      shell.style.backgroundRepeat = "no-repeat, no-repeat, no-repeat";
       phone.style.background = "transparent";
     };
     this.fitToViewport();
