@@ -30,6 +30,7 @@
     .jw-bg-img { display: none !important; }
     .jw-gradient-overlay { display: none !important; }
     .jw-preloader { background: transparent !important; }
+    .jw-logo-img { width: 220px !important; height: 98px !important; left: 86.5px !important; top: 96px !important; }
   }
   @keyframes jw-flicker {
     0%   { transform: translate(-50%, -50%) scale(1, 1);       opacity: 0.82; }
@@ -128,7 +129,7 @@
     <div ref="{{ topContentRef }}" style="transition: opacity 260ms cubic-bezier(0.2,0,0,1);">
     <div style="position: absolute; left: 0; top: 0; width: 393px; height: 205px; z-index: 5; pointer-events: none;">
       <div style="position: absolute; left: 50%; top: 145px; width: 230px; height: 90px; transform: translate(-50%, -50%); background: radial-gradient(50% 50% at 50% 62%, rgba(255,150,20,0.55) 0%, rgba(255,90,0,0.28) 45%, rgba(255,60,0,0) 75%); filter: blur(6px); animation: jw-flicker 1400ms ease-in-out infinite; z-index: 1;"></div>
-      <img src="skin/image-88.png" alt="KTO Jackpot de Fogo" style="position: absolute; left: 53px; top: 77px; width: 287px; height: 128px; object-fit: contain; z-index: 2; animation: jw-idle-bob 2600ms ease-in-out infinite;" />
+      <img class="jw-logo-img" src="skin/image-88.png" alt="KTO Jackpot de Fogo" style="position: absolute; left: 53px; top: 77px; width: 287px; height: 128px; object-fit: contain; z-index: 2; animation: jw-idle-bob 2600ms ease-in-out infinite;" />
       <div style="position: absolute; left: 50%; top: 178px; width: 190px; height: 1px; transform: translateX(-50%); z-index: 3;">
         <span style="position: absolute; left: 4%;  bottom: 0; width: 4px; height: 4px; border-radius: 50%; background: #FFD24A; box-shadow: 0 0 8px #FF7A00; --dx: -14px; animation: jw-ember 2000ms linear infinite; animation-delay: 0ms;"></span>
         <span style="position: absolute; left: 16%; bottom: 0; width: 3px; height: 3px; border-radius: 50%; background: #FFAE2A; box-shadow: 0 0 8px #FF5A00; --dx: 10px;  animation: jw-ember 1650ms linear infinite; animation-delay: 220ms;"></span>
